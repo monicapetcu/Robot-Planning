@@ -1,0 +1,69 @@
+===============================================================================
+Petcu Monica-Alexandra
+323CA
+===============================================================================
+
+	Pentru inceput, initiez 3 stive care:
+
+		> lst_exe_comm - Retine comenzile executate, salvand
+	ID-urile robotilor ce le-au executat, coordonatele pe harta unde le-au
+	executat, numarul de cutii ce trebuiau sa le execute si numarul de
+	cutii pe care le-au executat de fapt, putand sa afisez ultima comanda
+	executata.
+		> time - Retine comenzile executate, salvand ID-urile robotilor
+	ce le-au  executat, coordonatele pe harta unde le-au  executat, numarul
+	de cutii ce trebuiau executate si un contor ce retine timpul cat a stat
+	fiecare comanda in coada robotului cu ID-ul dat, pana la executia ei.
+		> undo - Retine comenzile executate, salvand ID-urile robotilor
+	ce le-au executat, coordonatele pe harta unde le-au executat, numarul
+	de cutii ce trebuiau a fi executate si prioritatea comenzii pentru a o
+	putea sterge sau readauga usor in coada.
+
+
+        Fiecare robot are cate o coada, cate un numar curent de cutii (adica
+        numarul de cutii pe care le cara la momentul curent) si cate un contor
+        ce retine cat timp a stat in coada robotului respectiv ultima comanda 
+        executata de acesta.
+
+
+	Creez harta, iar apoi citesc din fisier, de pe fiecare rand, primul
+	cuvant pentru a verifica ce tip de comanda este.
+
+
+		> ADD_GET_BOX - citesc in continuare id-ul robotului, 
+	coordonatele pe harta, numarul de cutii de executat si prioritatea si,
+	in functie de prioritate, adaug comanda la inceputul sau la sfarsitul
+	cozii, apoi o retin si in stiva undo.
+
+		> ADD_DROP_BOX - analog ADD_GET_BOX
+
+		> EXECUTE - citesc id-ul robotului si verific daca are coada
+	goala. Daca nu este goala, verific daca trebuie sa execut GET sau DROP,
+	verific daca am suficiente cutii pe harta sau detinute de robotul
+	respectiv, in functie de caz, si actualizez atat cutiile detinute de
+	robot, cat si cele aflate pe harta la coordonatele unde s-a efectuat
+	executia. Adaug robotul si actiunea respectiva in stiva lst_exe_comm si in
+	stiva time, oprindu-se contorizarea comenzii si eliminand comanda din
+	coada robotului.
+
+		> PRINT_COMMANDS - folosindu-ma de functia creata in Deque.h,
+	daca nu este goala coada, afisez comenzile aflate in coada robotului al
+	carui ID s-a introdus.
+
+		> LAST_EXECUTED_COMMAND - afisez ultima comanda executata, ce
+	este retinuta in varful stivei lst_exe_comm.
+
+		> UNDO - verific daca fac UNDO pe un ADD sau pe un EXECUTE. In
+	cazul in care fac pe un ADD, elimin comanda recent introdusa din coada.
+	In cazul in care fac pe un EXECUTE, restabilesc harta la cum era 
+	inaintea executiei comenzii EXECUTE si o readaug in coada robotului ce
+	o executase.
+
+		> HOW_MUCH-TIME - afiseaza timpul cat a stat ultima comanda
+	executata in coada robotului sau, fiind retinut intr-un contor pentru
+	fiecare robot in parte.
+
+		> HOW_MANY_BOXES - afisez cutiile detinute de robot
+
+	Dupa ce am verificat timpul comenzii, actualizez timpul cat a stat 
+	fiecare comanda in coada fiecarui robot inainte de a fi executata.
